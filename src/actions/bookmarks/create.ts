@@ -3,13 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
-
-export const CreateBookmarkSchema = z.object({
-    url: z.url("URL invalide"),
-    title: z.string().min(1, "Titre requis"),
-});
-
-export type CreateBookmarkInput = z.infer<typeof CreateBookmarkSchema>;
+import { CreateBookmarkInput, CreateBookmarkSchema } from "@/lib/schema";
 
 type ActionResult = { success: true } | { success: false; error: string };
 
@@ -20,7 +14,7 @@ export async function createBookmark(
     if (!parsed.success) {
         return { success: false, error: parsed.error.message };
     }
-
+    console.log(parsed.data);
     try {
         await prisma.bookmark.create({ data: parsed.data });
     } catch (e) {

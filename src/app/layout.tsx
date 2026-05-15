@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import Link from "next/link";
+
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
@@ -31,6 +33,19 @@ export default function RootLayout({
             className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
         >
             <body className="flex min-h-full flex-col">
+                <header className="border-b">
+                    <div className="max-w-xl mx-auto px-6 py-3 flex justify-between items-center">
+                        <Link href="/" className="font-semibold">
+                            Faremarks
+                        </Link>
+                        <Link
+                            href="/about"
+                            className="text-sm text-muted-foreground hover:text-foreground"
+                        >
+                            About
+                        </Link>
+                    </div>
+                </header>
                 <NuqsAdapter>{children}</NuqsAdapter>
                 <Toaster richColors position="top-right" />
             </body>
