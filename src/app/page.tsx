@@ -2,6 +2,7 @@ import { BookmarkForm } from "@/components/BookmarkForm";
 import { DeleteButton } from "@/components/DeleteButton";
 import { prisma } from "@/lib/prisma";
 import { Book } from "lucide-react";
+import Link from "next/link";
 
 export default async function Home() {
     const bookmarks = await prisma.bookmark.findMany();
@@ -12,9 +13,12 @@ export default async function Home() {
                 <div key={bookmark.id}>
                     <ul className="flex flex-col gap-3">
                         <li>
-                            <a href={bookmark.url} className="pr-10">
+                            <Link
+                                href={`/bookmarks/${bookmark.id}`}
+                                className="pr-10"
+                            >
                                 {bookmark.title}
-                            </a>
+                            </Link>
                             <p className="text-sm text-gray-500">
                                 {bookmark.description}
                             </p>
