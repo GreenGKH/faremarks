@@ -14,7 +14,7 @@ export default async function BookmarkDetail({
     return (
         <div>
             <h1 className="flex items-center justify-center h-screen font-bold">
-                rien a voir ici, pas de details
+                rien a voir ici, pas de details {bookmark.title}
             </h1>
         </div>
     );
